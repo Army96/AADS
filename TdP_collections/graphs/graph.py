@@ -25,13 +25,11 @@ class Graph:
   #------------------------- nested Vertex class -------------------------
   class Vertex:
     """Lightweight vertex structure for a graph."""
-    __slots__ = ['_element', '_visited', '_visited_from']
+    __slots__ = '_element'
 
     def __init__(self, x):
       """Do not call constructor directly. Use Graph's insert_vertex(x)."""
       self._element = x
-      self._visited = False
-      self._visited_from = None
 
     def element(self):
       """Return element associated with this vertex."""
@@ -42,18 +40,6 @@ class Graph:
 
     def __str__(self):
       return str(self._element)
-
-    def set_visited(self, visited):
-      self._visited = visited
-    
-    def is_visited(self):
-      return self._visited
-    
-    def set_visited_from(self, vertex):
-      self._visited_from = vertex
-
-    def get_visited_from(self):
-      return self._visited_from
 
   #------------------------- nested Edge class -------------------------
   class Edge:

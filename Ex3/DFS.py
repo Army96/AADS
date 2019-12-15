@@ -1,6 +1,16 @@
-from TdP_collections.graphs.graph import Graph
+from graph import Graph
 
 def iterative_dfs(graph, root):
+    """
+    Perform iterative DFS of the undiscovered portion of Graph graph starting at Vertex rot,
+     .
+
+    :param Graph graph: The Graph on wich perform DFS
+    :param Graph.Vertex vertex: The starting vertex of the DFS
+    :return: a dictionary mapping each vertex to the edge that was used to discover it.
+    :rtype: dict
+    """
+
     dictionary = {}
 
     dictionary[root] = None
@@ -28,5 +38,10 @@ def iterative_dfs(graph, root):
         else:                    # Set next edge to visit
             next_node.set_visited_from(node)
             node = next_node
+
+    # reset status
+    for v in graph.vertices():
+        v.set_visited(False)
+        v.set_visited_from(None)
 
     return dictionary

@@ -1,25 +1,24 @@
-from graph import Graph
+from Ex3.graph import DFSGraph
 
-def iterative_dfs(graph, root):
+def iterative_dfs(graph, root) -> dict:
     """
-    Perform iterative DFS of the undiscovered portion of Graph graph starting at Vertex rot,
-     .
+    Perform iterative DFS of the undiscovered portion of Graph graph starting at Vertex rot.
 
     :param Graph graph: The Graph on wich perform DFS
     :param Graph.Vertex vertex: The starting vertex of the DFS
-    :return: a dictionary mapping each vertex to the edge that was used to discover it.
+    :return: a result_dictionary mapping each vertex to the edge that was used to discover it.
     :rtype: dict
     """
 
-    dictionary = {}
+    result_dictionary = {}
 
-    dictionary[root] = None
+    result_dictionary[root] = None
     root.set_visited(True)
 
     node = root
     while True:
         if not node.is_visited():
-            dictionary[node] = graph.get_edge(node.get_visited_from(), node)
+            result_dictionary[node] = graph.get_edge(node.get_visited_from(), node)
             node.set_visited(True)
 
         # cicle edges to find the first not visited neighbour vertex
@@ -44,4 +43,4 @@ def iterative_dfs(graph, root):
         v.set_visited(False)
         v.set_visited_from(None)
 
-    return dictionary
+    return result_dictionary

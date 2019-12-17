@@ -1,4 +1,4 @@
-from TdP_collections.graphs.graph import Graph
+from Ex5.graph import Graph
 import random
 import pickle
 
@@ -26,4 +26,5 @@ def graphs_generator(directed) -> dict:
                 else:
                     if random.getrandbits(1):
                         graph.insert_edge(i, j, None)
+
     return graphs

@@ -10,12 +10,17 @@ def iterative_dfs(graph, root) -> dict:
     :rtype: dict
     """
 
+    if not isinstance(graph, DFSGraph):
+        raise TypeError('graph must be DFSGraph')
+    if not isinstance(root, DFSGraph.Vertex):
+        raise TypeError('root must be a DFSGraph.Vertex')
+
     result_dictionary = {}
 
     result_dictionary[root] = None
     root.set_visited(True)
-
     node = root
+    
     while True:
         if not node.is_visited():
             result_dictionary[node] = graph.get_edge(node.get_visited_from(), node)

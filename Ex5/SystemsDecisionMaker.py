@@ -40,13 +40,3 @@ def systems_decision_maker(graph) -> dict:
                         vertex.set_full_coverage_degree(vertex.full_coverage_degree() - 1)
 
     return graph
-
-
-
-
-
-
-
-
-
-

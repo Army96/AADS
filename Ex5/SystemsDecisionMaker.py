@@ -1,35 +1,44 @@
 def systems_decision_maker(graph) -> dict:
-    """Inizialmente considero tutti i vertici come se avessero il sistema. 
-    full_coverage rappresenta che tutti i vertici a lui adiacenti hanno il sistema.
-    full_coverage_degree rappresenta il numero di amici che hanno il parametro full_coverage = true."""
+    """Initially we consider that all the vertices have the system.
+    full_coverage is true if all the vertices adjacent to him have the system.
+    At the beginning everyone has it, therefore we set it a true.
+    full_coverage_degree represents the number of friends who have the full_coverage parameter set to true.
+    Therefore, at the beginning, the full_coverage_degree is equal to degree"""
     for v in graph.vertices():
         v.set_system(True)
-        v.set_initial_full_coverage(True)
+        v.set_full_coverage(True)
         v.set_full_coverage_degree(graph.degree(v))
 
-    """Effettuo il controllo su tutti i vertici del grafo"""
+    """I check all the vertices of the graph"""
     for v in graph.vertices():
 
-        """Se il vertice e tutti i suoi amici hanno il sistema, il vertice è uno dei candidati a non avere
-         più il sistema"""
+        """If the vertex and all of his friends have the system, the vertex is one of the candidates which doesn't have 
+        the system.
+        Else we go to the next vertex"""
         if v.system() & v.full_coverage():
 
-            """Cerco il vertice con full_coverage = true e che abbia il minor numero di amici con full_coverage=true.
-            Mi conviene prendere il minore rispetto a full_coverage_degree invece che a degree perchè così riesco a
-            raggiungere una soluzione più vicina a quella ottimale (so che questo ragionamento è troppo ingarbugliato,
-            per qualsiasi domanda non esitate a chiedere)"""
-            min=v
+            """We search the vertex with full_coverage set to true and with the minimum full_coverage_degree.
+            We take the smaller than full_coverage_degree instead of a degree because so, when we remove a system from a
+            computer, we minimize the number of computers that will not be able to remove the system."""
+            minimum = v
             for e in graph.incident_edges(v):
                 u = e.opposite(v)
-                if u.full_coverage() and (min.full_coverage_degree() > u.full_coverage_degree()):
-                    min=u
+                if u.full_coverage() and (minimum.full_coverage_degree() > u.full_coverage_degree()):
+                    minimum = u
 
-            """Rimuovo il sistema dal vertice e setto il parametro full_coverage di tutti i suoi amici a false"""
-            min.set_system(False)
-            for e in graph.incident_edges(min):
-                u = e.opposite(min)
-                """in set_full_coverage avviene il decremento del full_coverage_degree dei vicini di u"""
-                u.set_full_coverage(False, graph)
+            """We remove the system from the vertex "minimum" and we set the full_coverage parameter of all his friends 
+            to False"""
+            minimum.set_system(False)
+            for e in graph.incident_edges(minimum):
+                u = e.opposite(minimum)
+                """If the full_coverage parameter was True, we set it to False and we decrement the full_coverage_degree
+                of its friends"""
+                if u.full_coverage():
+                    u.set_full_coverage(False)
+                    for edge in graph.incident_edges(u):
+                        vertex = edge.opposite(u)
+                        vertex.set_full_coverage_degree(vertex.full_coverage_degree() - 1)
+
     return graph
 
 

@@ -36,26 +36,21 @@ class Graph:
       return self._element
 
     def system(self):
+      """Return a boolean that indicates if the vertex has the system"""
       return self._system
 
     def full_coverage(self):
+      """Return a boolean that indicates if all the neighbors of the vertex have the system"""
       return self._full_coverage
 
     def full_coverage_degree(self):
+      """Return an integer that indicates the number of neighbors with the full_coverage set to True"""
       return self._full_coverage_degree
 
     def set_system(self, system):
       self._system = system
 
-    def set_initial_full_coverage(self, full_coverage):
-      self._full_coverage = full_coverage
-
-    def set_full_coverage(self, full_coverage, graph):
-      """Se il full_coverage passa da true a false viene decrementato di 1 il full_coverage_degree di tutti i suoi amici"""
-      if not full_coverage and self._full_coverage:
-        for e in graph.incident_edges(self):
-          v = e.opposite(self)
-          v.set_full_coverage_degree(v.full_coverage_degree()-1)
+    def set_full_coverage(self, full_coverage):
       self._full_coverage = full_coverage
 
     def set_full_coverage_degree(self, full_coverage_degree):

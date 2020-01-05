@@ -1,8 +1,6 @@
 from TdP_collections.graphs.graph import Graph
 from Ex4 import FakeNewsDetector
 
-# Test tree
-
 graph = Graph()
 
 vertices = []
@@ -19,6 +17,6 @@ graph.insert_edge(vertices[3], vertices[7])
 graph.insert_edge(vertices[5], vertices[8])
 
 
-n,l = FakeNewsDetector.install(graph, vertices[0])
+n,l = FakeNewsDetector.installer(graph, vertices[0])
 print(n)
 print(*l, sep="-")

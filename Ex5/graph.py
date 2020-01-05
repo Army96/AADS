@@ -47,6 +47,7 @@ class Graph:
       """Return an integer that indicates the number of neighbors with the full_coverage set to True"""
       return self._full_coverage_degree
 
+    """Setter method"""
     def set_system(self, system):
       self._system = system
 

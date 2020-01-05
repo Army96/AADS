@@ -1,7 +1,7 @@
 graph.py
-In the graph structure have been added three new parameter compared to the course data structure: system, full_coverage
-and full_coverage_degree, with their getter and setter method (system(), full_coverage(), full_coverage_degree(),
-set_system(boolean), set_full_coverage(boolean), set_full_coverage_degree(int)).
+In the graph structure have been added three new parameter compared to the course data structure (graph implemented 
+with an adjacency map): system, full_coverage and full_coverage_degree, with their getter and setter method (system(), 
+full_coverage(), full_coverage_degree(), set_system(boolean), set_full_coverage(boolean), set_full_coverage_degree(int)).
 •	system: this parameter is a boolean that indicates if the computer must have or must not have the system
 •	full_coverage: this parameter is a boolean that it’s true if all the neighbors of the computer have the system
 •	full_coverage_degree: this parameter is a integer that represent the number of the friends of the vertex with the

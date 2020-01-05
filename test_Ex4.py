@@ -1,8 +1,6 @@
 from TdP_collections.graphs.graph import Graph
 from Ex4 import FakeNewsDetector
 
-# Test tree
-
 graph = Graph()
 
 vertices = []

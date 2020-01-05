@@ -19,12 +19,12 @@ def installer(graph :Graph, root :Graph.Vertex):
         return(1, [root])
 
     # Start iteration 
-    return install(graph, root)
+    return install(graph, root, None, {}, [])
 
 
-def install(graph :Graph, root :Graph.Vertex, parent=None , cache = {}, installed_list = []):
+def install(graph :Graph, root :Graph.Vertex, parent :Graph.Vertex, cache :dict, installed_list :list):
     """
-    NOTE: Use installer(graph, root) to start installation
+    NOTE: Use installer(graph, root) to start installation.
     Decide whether to install the software on the root vertex or on all his children
     Return a 2 elements tuple composed by the number of vertices on which the software is 
     installed and a list of such vertices
@@ -49,7 +49,7 @@ def install(graph :Graph, root :Graph.Vertex, parent=None , cache = {}, installe
     return cache[root]["install"]
 
 
-def install_yes(graph, root, parent, cache, installed_list):
+def install_yes(graph :Graph, root :Graph.Vertex, parent :Graph.Vertex, cache :dict, installed_list :list):
     """ Return the cost of installing the software on the root vertex"""
 
     # If thefuncion was alredy called on this vertex return the results from the cache
@@ -59,7 +59,7 @@ def install_yes(graph, root, parent, cache, installed_list):
     cache[root]["yes"] = 1 + sum(install(graph, children, root, cache, installed_list)[0] for children in children(graph, root, parent))
     return cache[root]["yes"]
 
-def install_no(graph, root, parent, cache, installed_list):
+def install_no(graph :Graph, root :Graph.Vertex, parent :Graph.Vertex, cache :dict, installed_list :list):
     """ Return the cost of installing the software on the children of root"""
     
     # If thefuncion was alredy called on this vertex return the results from the cache
@@ -72,7 +72,7 @@ def install_no(graph, root, parent, cache, installed_list):
 
 
 
-def children(graph, root, parent):
+def children(graph :Graph, root :Graph.Vertex, parent :Graph.Vertex):
     """ 
     Helper function.
     Return an iterator on the children of root,

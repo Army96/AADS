@@ -1,5 +1,5 @@
 CPUScheduler.py
-CPUScheduler contain the Job class used in algorithm and the scheduleJobs(AdaptablePriorityQueue, int) function.
+CPUScheduler contain the Job class used in the algorithm and the scheduleJobs(AdaptablePriorityQueue, int) function.
 The scheduleJobs required in input an AdaptablePriorityQueue of Job (this Queue can be empty) and an integer that
 represent the number of time slice that a job must wait for increment his priority.
 The output is represent by the various prints during the run of this function (because the infinite loop never end).
